@@ -1,0 +1,24 @@
+resources:
+  pipelines:
+    mysql_qbc:
+      name: ${var.pipeline_name}
+      catalog: ${var.dest_catalog}
+      schema: ${var.dest_schema}
+      channel: PREVIEW
+      serverless: true
+      ingestion_definition:
+        connection_name: ${var.connection_name}
+        source_type: MYSQL
+        objects:
+          - table:
+              destination_catalog: ${var.dest_catalog}
+              destination_schema: ${var.dest_schema}
+              source_schema: ${var.source_schema}
+              source_table: employees
+              table_configuration:
+                primary_keys:
+                  - my_row_id
+                query_based_connector_config:
+                  cursor_columns:
+                    - my_row_id
+                  hard_deletion_sync_min_interval_in_seconds: 120

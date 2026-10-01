@@ -1,0 +1,25 @@
+# This is a Declarative Automation Bundle definition for dabs.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: dabs
+  uuid: 480e2257-d9c4-4812-8274-1b9a94d62544
+
+include:
+  - variables.yml
+  - resources/*.yml
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-7405609404561933.13.azuredatabricks.net
+    variables:
+      dest_catalog: workspace_hybrid_josed_7405609404561933
+      dest_schema: mysql_bronze
+      connection_name: mysql_josed
+      source_schema: company_db
