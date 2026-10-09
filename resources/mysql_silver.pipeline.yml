@@ -1,0 +1,13 @@
+resources:
+  pipelines:
+    mysql_silver:
+      name: ${var.silver_pipeline_name}
+      catalog: ${var.dest_catalog}
+      schema: ${var.silver_schema}
+      serverless: true
+      configuration:
+        source_table: ${var.dest_catalog}.${var.dest_schema}.employees
+        time_off_source_table: ${var.dest_catalog}.${var.dest_schema}.employee_time_off
+      libraries:
+        - notebook:
+            path: ../src/mysql_silver/transform.py

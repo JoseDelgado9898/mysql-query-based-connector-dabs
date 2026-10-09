@@ -17,9 +17,9 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://adb-7405609404561933.13.azuredatabricks.net
+      host: https://adb-7405613523358300.0.azuredatabricks.net
     variables:
-      dest_catalog: workspace_hybrid_josed_7405609404561933
-      dest_schema: mysql_bronze
+      dest_catalog: workspace_serverless_josed
+      dest_schema: default
       connection_name: mysql_josed
       source_schema: company_db

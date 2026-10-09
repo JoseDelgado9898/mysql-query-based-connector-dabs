@@ -1,0 +1,17 @@
+resources:
+  jobs:
+    mysql_orchestration:
+      name: mysql_ingest_and_transform
+      trigger:
+        periodic:
+          interval: 1
+          unit: DAYS
+      tasks:
+        - task_key: mysql_ingestion
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.mysql_qbc.id}
+        - task_key: medallion_transformations
+          depends_on:
+            - task_key: mysql_ingestion
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.mysql_silver.id}

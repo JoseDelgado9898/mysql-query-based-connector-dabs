@@ -10,3 +10,9 @@ variables:
     description: 'Destination schema for ingested data'
   source_schema:
     description: 'Source MySQL schema (database) name'
+  silver_pipeline_name:
+    description: 'Name for the Spark Declarative Pipeline that refines the bronze data'
+    default: mysql_silver
+  silver_schema:
+    description: 'Destination schema for the refined (silver/gold) tables'
+    default: mysql_silver
